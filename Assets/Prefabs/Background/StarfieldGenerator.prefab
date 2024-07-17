@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7841936663603416218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6821738921343836115}
+  - component: {fileID: 2918559370486272670}
+  m_Layer: 0
+  m_Name: StarfieldGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6821738921343836115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841936663603416218}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 185.55618, y: -6.6, z: -100.16839}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2918559370486272670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841936663603416218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c91dd96d3fcec4698a401c5025b1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfPlanet: 0
+  numberOfStars: 0
+  maxDeep: 50
+  fieldSize: {x: 500, y: 500}
+  planetPrefab: {fileID: 290687339044475361, guid: 7fc2c59dfac89f042bd2a50580d28a4e, type: 3}
+  starPrefab: {fileID: 1469844993739489905, guid: ed47c9a4be0e2704489f420812cf055b, type: 3}
+  planetSprites:
+  - {fileID: 21300000, guid: 153b4a3be75fdbd42b7dd9725bdcade2, type: 3}
+  - {fileID: 21300000, guid: 04c7a7cfaf8a84d4b85e8e829fb806db, type: 3}
+  - {fileID: 21300000, guid: 878347b712a98de479e50f2c0744011c, type: 3}
+  - {fileID: 21300000, guid: 182d9abd660675e4280a898a8cbeb84a, type: 3}
+  - {fileID: 21300000, guid: 97ce27cd99240b94dace15cf6192f135, type: 3}
+  - {fileID: 21300000, guid: 083dd9fcb6e4cb54ab98a34d22ad098c, type: 3}
+  - {fileID: 21300000, guid: 473e8329d05478d4d95ce7848f1728c2, type: 3}
+  - {fileID: 21300000, guid: 7274cf954e1dc74489bbd078ea080cba, type: 3}
+  - {fileID: 21300000, guid: 4f8d5c6fccc1d9a4bbbb64f11c96509a, type: 3}
+  - {fileID: 21300000, guid: 9e7b316ad7758564aae40f6f8f3ecb8f, type: 3}
+  - {fileID: 21300000, guid: 2ab5c446351ee18458143689f8e1efaa, type: 3}
+  - {fileID: 21300000, guid: 03e3d1076cb78184584a68ca8c95c5f8, type: 3}
+  - {fileID: 21300000, guid: 69698ee2c9658364a8e488c743bafd62, type: 3}
+  - {fileID: 21300000, guid: 13e785afb1611d746848b299d0010fa9, type: 3}
+  - {fileID: 21300000, guid: 9b715f364bf5bca449560c0214607415, type: 3}
+  - {fileID: 21300000, guid: 18de00f3c44ece644b7abc6c3a7f205c, type: 3}
+  starSprites:
+  - {fileID: 21300000, guid: 1709fc98d725b59479dcbec963f73948, type: 3}
+  - {fileID: 21300000, guid: 55650649c41bd714eb0555fd8bd2c66f, type: 3}
+  - {fileID: 21300000, guid: 8d804c0410540f84ab0bf37f192dc544, type: 3}
+  - {fileID: 21300000, guid: 3b4bd8632b2115d4f886b394142b02ff, type: 3}

@@ -10,7 +10,7 @@ public class StarfileldGenerator : MonoBehaviour
     public int maxDeep = 50;
     public Vector2 fieldSize = new Vector2 (100, 100);
     public GameObject planetPrefab;
-    public GameObject backgroundPrefab;
+    //public GameObject backgroundPrefab;
     public GameObject starPrefab;
     public Sprite[] planetSprites;
     public Sprite[] starSprites;
@@ -18,7 +18,7 @@ public class StarfileldGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateBackground();
+        //GenerateBackground();
         GenerateStarfield();
     }
 
@@ -28,14 +28,14 @@ public class StarfileldGenerator : MonoBehaviour
         
     }
 
-    void GenerateBackground()
-    {
-        Vector3 position = new Vector3 (0,-maxDeep,0);
+    //void GenerateBackground()
+    //{
+    //    Vector3 position = new Vector3 (0,-maxDeep,0);
 
-        GameObject background = Instantiate(backgroundPrefab, position, Quaternion.Euler(90,0,0));
-        background.transform.localScale = new Vector3(fieldSize.x, fieldSize.y, 1);
+    //    GameObject background = Instantiate(backgroundPrefab, position, Quaternion.Euler(90,0,0));
+    //    background.transform.localScale = new Vector3(fieldSize.x, fieldSize.y, 1);
 
-    }
+    //}
 
     void GenerateStarfield()
     { 
