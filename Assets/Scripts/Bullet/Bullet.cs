@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public float speed = 20f;
     public float lifetime = 5f;
     public int damage = 10;
+    public int shieldDamange = 5;
     public GameObject explosionEffectPrefab;
 
     // Start is called before the first frame update
@@ -24,16 +25,26 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         Health health = collision.gameObject.GetComponent<Health>();
+        ShieldCollision shieldCollision = collision.gameObject.GetComponent<ShieldCollision>();
+
         if (health != null)
         {
             health.TakeDamage(damage);
+            Destroy(gameObject);
+            return;
+        }
+        if (shieldCollision != null)
+        {
+            shieldCollision.TakeDamage(shieldDamange);
+            Destroy(gameObject);
         }
 
         if (explosionEffectPrefab != null)
         {
             Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
         }
-        Destroy(gameObject);
+        
     }
 }
