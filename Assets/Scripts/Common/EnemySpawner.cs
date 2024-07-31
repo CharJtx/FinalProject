@@ -56,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
         }
         meshRenderer.material = enemyMaterial;
 
+        // rigibody
         Rigidbody rb = enemy.GetComponent<Rigidbody>();
         if (rb == null)
         {
@@ -64,20 +65,25 @@ public class EnemySpawner : MonoBehaviour
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
+        // colider
         BoxCollider collider = enemyInstance.GetComponent<BoxCollider>();
         if (collider == null)
         {
             collider = enemyInstance.AddComponent<BoxCollider>();
         }
 
+        // NavMesh
         NavMeshAgent navMeshAgent = enemy.AddComponent<NavMeshAgent>();
         navMeshAgent.height = 0;
         navMeshAgent.angularSpeed = 10;
         navMeshAgent.stoppingDistance = 20;
 
+        // EnemyAI
         EnemyAI enemyScript = enemy.AddComponent<EnemyAI>();
         enemyScript.chaseDistance = 1000;
-        Health health = enemyInstance.AddComponent<Health>();
+
+        // healty
+        SmallEnemyHealth health = enemyInstance.AddComponent<SmallEnemyHealth>();
 
         // Set enemy spawn position randomly
         Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;

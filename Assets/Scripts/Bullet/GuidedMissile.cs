@@ -23,6 +23,12 @@ public class GuidedMissile : MonoBehaviour
 
     void FindClosestEnemy()
     {
+        //if (transform.gameObject.layer == 6)
+        //{
+        //    enemyLayer = 8;
+        //} else if (transform.gameObject.layer == 8) {
+        //    enemyLayer = 6; 
+        //}
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, enemyLayer);
         float closestDistance = Mathf.Infinity;
 
@@ -43,13 +49,13 @@ public class GuidedMissile : MonoBehaviour
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        if (gameObject.layer == collision.gameObject.layer) return;
-        Health hp = collision.gameObject.GetComponent<Health>();
+        if (! LayerMaskExtensions.IsLayerInLayerMask(collision.gameObject.layer,enemyLayer)) return;
+        IHealth hp = collision.gameObject.GetComponent<IHealth>();
         ShieldCollision shieldCollision = collision.gameObject.GetComponent<ShieldCollision>();
 
         if (hp == null) 
         {
-            hp = collision.gameObject.GetComponentInChildren<Health>();
+            hp = collision.gameObject.GetComponentInChildren<IHealth>();
         }
         if (hp != null)
         {
@@ -88,4 +94,6 @@ public class GuidedMissile : MonoBehaviour
 
         }
     }
+
+   
 }

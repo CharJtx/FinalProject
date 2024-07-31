@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Health : MonoBehaviour, IHealth
+public class SmallEnemyHealth : MonoBehaviour,IHealth
 {
     public int maxHealth = 100;
     private int currentHealth;
@@ -16,11 +16,11 @@ public class Health : MonoBehaviour, IHealth
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void TakeDamage(int damage)
-    { 
+    {
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
@@ -28,22 +28,31 @@ public class Health : MonoBehaviour, IHealth
         }
     }
 
-    void Die() 
+    void Die()
     {
 
+        DropItemManager dropItemManager = FindObjectOfType<DropItemManager>();
+        if (dropItemManager == null)
+        {
+            Debug.LogError("can not find the DropItemManager");
+        }
+        else
+        {
+            dropItemManager.DropItem(transform);
+        }
         if (transform.parent != null)
         {
             Destroy(transform.parent.gameObject);
         }
-        else 
+        else
         {
             Destroy(gameObject);
         }
-        
+
     }
 
     public int GetCurrentHealth()
-    { 
+    {
         return currentHealth;
     }
 }

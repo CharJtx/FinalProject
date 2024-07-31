@@ -27,9 +27,13 @@ public class Bullet : MonoBehaviour
     {
         if(gameObject.layer == collision.gameObject.layer) return;
 
-        Health health = collision.gameObject.GetComponent<Health>();
+        IHealth health = collision.gameObject.GetComponent<IHealth>();
         ShieldCollision shieldCollision = collision.gameObject.GetComponent<ShieldCollision>();
 
+        if(health == null)
+        {
+            health = collision.gameObject.GetComponentInChildren<IHealth>();
+        }
         if (health != null)
         {
             health.TakeDamage(damage);
