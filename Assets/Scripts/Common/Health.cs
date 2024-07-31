@@ -29,7 +29,15 @@ public class Health : MonoBehaviour
 
     void Die() 
     {
-        Destroy(gameObject);
+        if (transform.parent != null)
+        {
+            Destroy(transform.parent.gameObject);
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     public int GetCurrentHealth()

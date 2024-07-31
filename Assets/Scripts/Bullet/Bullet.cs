@@ -25,6 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(gameObject.layer == collision.gameObject.layer) return;
 
         Health health = collision.gameObject.GetComponent<Health>();
         ShieldCollision shieldCollision = collision.gameObject.GetComponent<ShieldCollision>();

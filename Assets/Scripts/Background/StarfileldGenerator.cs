@@ -45,7 +45,7 @@ public class StarfileldGenerator : MonoBehaviour
         for (int i = 0; i < numberOfPlanet; i++)
         {
             Vector3 position = new Vector3 (Random.Range(-fieldSize.x / 2,fieldSize.x/2), Random.Range(-maxDeep, -20), Random.Range(-fieldSize.y / 2, fieldSize.y / 2));
-            GameObject planet = Instantiate (planetPrefab,position, Quaternion.Euler(90,0,0));
+            GameObject planet = Instantiate (planetPrefab,position, Quaternion.Euler(90,0,0), transform);
 
             // Choose a picture randomly
             SpriteRenderer spriteRenderer = planet.GetComponent<SpriteRenderer>();
@@ -58,7 +58,7 @@ public class StarfileldGenerator : MonoBehaviour
         for (int i = 0; i < numberOfStars; i++) 
         {
             Vector3 position = new Vector3(Random.Range(-fieldSize.x / 2, fieldSize.x / 2), Random.Range(-maxDeep, -20), Random.Range(-fieldSize.y / 2, fieldSize.y / 2));
-            GameObject star = Instantiate(starPrefab, position, Quaternion.Euler(90, 0, 0));
+            GameObject star = Instantiate(starPrefab, position, Quaternion.Euler(90, 0, 0), transform);
 
             SpriteRenderer spriteRenderer2 = star.GetComponent<SpriteRenderer>();
             if (spriteRenderer2 != null && starSprites.Length > 0)
