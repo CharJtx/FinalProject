@@ -38,7 +38,7 @@ public class SmallEnemyHealth : MonoBehaviour,IHealth
         }
         else
         {
-            dropItemManager.DropItem(transform);
+            dropItemManager.DropItem(transform,0);
         }
         if (transform.parent != null)
         {
