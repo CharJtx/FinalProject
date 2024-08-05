@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d594ce1a432f504abc8b79787ddceec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3283653118466175267, guid: 2c6bf045d9591bf49a995afd73cd19a9, type: 3}
+  bulletPrefab: {fileID: 137125213075702018, guid: 5fa5c2f583d10204a8e57d3f112dbd88, type: 3}
   bulletSpawnPoint: {fileID: 6706589816863965067}
   shootRate: 0.5
 --- !u!1 &8519727923220461726 stripped

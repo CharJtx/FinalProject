@@ -1,0 +1,44 @@
+{
+    "upgrades":[
+        {
+            "id":"1",
+            "name":"Bullet damage",
+            "description":"Increases attack power by {Num}%",
+            "type":"percentage",
+            "branch":"ShipShooting",
+            "method":"IncreaseBulletDamagebyPercentage"
+        },
+        {
+            "id":"2",
+            "name":"Max HP percentage",
+            "description":"Increases Max HP by {Num}%",
+            "type":"percentage",
+            "branch":"Health",
+            "method":"IncreaseMaxHPbyPercent"
+        },
+        {
+            "id":"3",
+            "name":"Max HP",
+            "description":"Increases Max HP by {Num}",
+            "type":"value",
+            "branch":"Health",
+            "method":"IncreaseMaxHPbyValue"
+        },
+        {
+            "id":"4",
+            "name":"Max shield percentage",
+            "description":"Increases Max shield by {Num}%",
+            "type":"percentage",
+            "branch":"ShieldCollision",
+            "method":"IncreaseMaxShieldbyPercent"
+        },
+        {
+            "id":"5",
+            "name":"Max shield",
+            "description":"Increases Max shield by {Num}",
+            "type":"value",
+            "branch":"ShieldCollision",
+            "method":"IncreaseMaxShieldbyValue"
+        }
+    ]
+}

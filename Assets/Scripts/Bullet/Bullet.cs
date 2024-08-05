@@ -1,20 +1,26 @@
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : BulletBase
 {
 
-    public float speed = 20f;
-    public float lifetime = 5f;
-    public int damage = 10;
-    public int shieldDamange = 5;
+    //public float speed = 20f;
+    //public float lifeTime = 5f;
+    //public int damage = 10;
+    //public int shieldDamange = 5;
     public GameObject explosionEffectPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        speed = 20f;
+        damage = 5;
+        shieldDamange = 10;
+        lifeTime = 5f;
+        Destroy(gameObject, lifeTime);
     }
 
     // Update is called once per frame
@@ -51,5 +57,16 @@ public class Bullet : MonoBehaviour
             Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
         }
         
+    }
+
+    public void IncreaseBulletDamagebyPercentage(int percentage)
+    {
+        float increasePercentage = percentage / 100;
+        damage = (int) Math.Floor(increasePercentage * damage);
+    }
+
+    public override string BulletType()
+    {
+        return "0";
     }
 }

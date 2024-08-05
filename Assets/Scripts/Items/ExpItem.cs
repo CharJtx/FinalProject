@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExpItem : MonoBehaviour
 {
     public int expValue = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
         

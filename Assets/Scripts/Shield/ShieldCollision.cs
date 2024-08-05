@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -89,6 +90,17 @@ public class ShieldCollision : MonoBehaviour
             shieldCollider.enabled = false; // 禁用护盾的Collider
         }
         gameObject.SetActive(false);
+    }
+
+    public void IncreaseMaxShieldbyPercent(int percent)
+    {
+        float percentage = percent / 100;
+        shieldValue = (int) Math.Floor(percentage*shieldValue);
+    }
+
+    public void IncreaseMaxShieldbyValue(int value)
+    {
+        shieldValue += value;
     }
 }
 

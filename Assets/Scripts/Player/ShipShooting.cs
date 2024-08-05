@@ -8,6 +8,10 @@ public class ShipShooting : MonoBehaviour
     public Transform bulletSpawnPoint; // 子弹发射位置
     public float shootRate = 0.5f; // 射击速率
     private float shootCooldown;
+    private int bulletDamagePercent = 0;
+    private int bulletDamageValue = 0;
+    private int bulletShieldDamagePercent = 0;
+    private int bulletShieldDamageValue = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +32,21 @@ public class ShipShooting : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        BulletBase bulletBase = bullet.GetComponent<BulletBase>();
+        bulletBase.IncreaseBulletDamagebyPercentage(bulletDamagePercent);
+        bulletBase.IncreaseBulletDamagebyValue(bulletDamageValue);
+
         shootCooldown = shootRate;
+    }
+
+    public void IncreaseBulletDamagebyPercentage(int percentage)
+    {
+        bulletDamagePercent += percentage;
+    }
+
+    public void DecreaseBulletDamagebyPercentage(int value) 
+    {
+        bulletDamageValue += value;
     }
 }

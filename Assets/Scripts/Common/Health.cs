@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -45,5 +46,16 @@ public class Health : MonoBehaviour, IHealth
     public int GetCurrentHealth()
     { 
         return currentHealth;
+    }
+
+    public void IncreaseMaxHPbyPercent( int percent)
+    {
+        float percentage = percent / 100;
+        maxHealth = (int)Math.Floor(maxHealth * percentage);
+    }
+
+    public void IncreaseMaxHPbyValue( int value)
+    {
+        maxHealth += value;
     }
 }

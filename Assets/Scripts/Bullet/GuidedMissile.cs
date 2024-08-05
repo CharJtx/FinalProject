@@ -1,15 +1,17 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuidedMissile : MonoBehaviour
+public class GuidedMissile : BulletBase
 {
-    public float speed = 10f;
+    //public float speed = 10f;
     public float turnSpeed = 5f;
     public float detectionRadius = 50f;
     public LayerMask enemyLayer;
-    public int damage = 50;
-    public float lifeTime = 10f;
+    //public int damage = 50;
+    //public int shieldDamange = 50;
+    //public float lifeTime = 10f;
     public GameObject explosionEffectPrefab;
 
     public Transform target;
@@ -17,6 +19,10 @@ public class GuidedMissile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = 10f;
+        damage = 50;
+        shieldDamange = 50;
+        lifeTime = 10f;
         Destroy(gameObject, lifeTime);
         FindClosestEnemy();
     }
@@ -95,5 +101,9 @@ public class GuidedMissile : MonoBehaviour
         }
     }
 
+    public override string BulletType()
+    {
+        return "1";
+    }
    
 }

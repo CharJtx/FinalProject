@@ -7,10 +7,13 @@ public class SmallEnemyHealth : MonoBehaviour,IHealth
 {
     public int maxHealth = 100;
     private int currentHealth;
+    private GameObject[] explosionPrefabs;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        explosionPrefabs = Resources.LoadAll<GameObject>("Effect/Explosion/Ship");
     }
 
     // Update is called once per frame
@@ -40,6 +43,10 @@ public class SmallEnemyHealth : MonoBehaviour,IHealth
         {
             dropItemManager.DropItem(transform,0);
         }
+
+        GameObject explosionEffectPrefab = explosionPrefabs[Random.Range(0, explosionPrefabs.Length)];
+        Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
+
         if (transform.parent != null)
         {
             Destroy(transform.parent.gameObject);
