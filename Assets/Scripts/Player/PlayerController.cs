@@ -1,11 +1,13 @@
 using UnityEngine;
 
-public class ShipController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float turnSpeed = 100f;
     public Vector2 minBounds = new Vector2(-50, -50); // 活动范围的最小边界
     public Vector2 maxBounds = new Vector2(50, 50); // 活动范围的最大边界
+
+    private static PlayerController instance;
 
     void Update()
     {

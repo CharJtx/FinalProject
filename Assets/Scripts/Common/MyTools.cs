@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Reflection;
+using System.Linq;
 
 public class MyTools : MonoBehaviour
 {
@@ -40,5 +41,32 @@ public class MyTools : MonoBehaviour
             }
         }
         
+    }
+
+    public static int[] RandomlyGenerateArray (int minLength, int maxLength)
+    {
+        int randomLength = UnityEngine.Random.Range(minLength, maxLength);
+
+        // generate a array from 0 to maxLength
+        int[] numbers = Enumerable.Range(0, maxLength).ToArray();
+
+        // Shuffle an array
+        numbers = numbers.OrderBy(x => UnityEngine.Random.value).ToArray();
+
+        return numbers.Skip(0).Take(randomLength).ToArray();
+    }
+
+    public static Transform FindChildByName(Transform parent, string name)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == name)
+                return child;
+
+            Transform result = FindChildByName(child, name);
+            if (result != null)
+                return result;
+        }
+        return null;
     }
 }

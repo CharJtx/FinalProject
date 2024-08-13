@@ -8,6 +8,7 @@ TagManager:
   - Walls
   - Bullet
   - Canvas
+  - MapPanel
   layers:
   - Default
   - TransparentFX
