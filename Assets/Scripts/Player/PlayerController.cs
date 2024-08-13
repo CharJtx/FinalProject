@@ -9,6 +9,21 @@ public class PlayerController : MonoBehaviour
 
     private static PlayerController instance;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            GameManager.Instance.RegisterPersistentObject(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        
+    }
+
+
     void Update()
     {
         Move();

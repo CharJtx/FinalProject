@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FightBGMManager : MonoBehaviour
+public class BGMManager : MonoBehaviour
 {
 
-    private static FightBGMManager instance;
+    private static BGMManager instance;
 
     private AudioSource audioSource;
     public AudioClip bgmA;
@@ -60,5 +60,8 @@ public class FightBGMManager : MonoBehaviour
     { audioSource.UnPause(); }
 
     public void SetVolume(float volume)
-    { audioSource.volume = volume;}
+    { audioSource.volume = volume; }
+
+    public float getVolume()
+    { return audioSource.volume; }
 }

@@ -40,6 +40,11 @@ public class MapGenerator: MonoBehaviour
         UnityEngine.Random.InitState(seed);
         //Transform contentTransform = MyTools.FindChildByName(mapPanel.transform, "MapContent");
 
+        if (mapPanel != null)
+        {
+            mapPanel.SetActive(false);
+        }
+
         // find the Map Scroll
         scrollRectTransform = mapPanel.transform.GetChild(0).GetComponent<RectTransform>();
 
@@ -157,6 +162,8 @@ public class MapGenerator: MonoBehaviour
     void VisualizeMap()
     {
 
+        
+
         for (int i = 0; i < allNodes.Count; i++)
         {
             for (int j = 0; j < allNodes[i].nodes.Count; j++)
@@ -201,7 +208,14 @@ public class MapGenerator: MonoBehaviour
 
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                     arrowRectTransform.rotation = Quaternion.Euler(0, 0, angle);
+
+                    arrowRectTransform.sizeDelta = new Vector2(distance-50, 20);
                 }
+
+                GameManager gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+                string scenceType = allNodes[i].nodes[j].Type;
+
+                newButton.onClick.AddListener(() =>gameManager.ChangeScene(scenceType));
 
             }
 
@@ -215,6 +229,15 @@ public class MapGenerator: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.M))
+        {
+            mapPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else if (Input.GetKey(KeyCode.N))
+        {
+            mapPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
     }
 }

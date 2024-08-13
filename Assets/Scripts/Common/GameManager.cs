@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager Instance;
+    public static GameManager Instance;
+    Transform playerTransform;
 
     private void Awake()
     {
@@ -31,12 +32,17 @@ public class GameManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
+            playerTransform = player.transform;
         }
     }
 
     public void LoadPlayerData()
     {
-
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            player.transform.position = playerTransform.position;
+        }
     }
 
     public void ChangeScene(string sceneName)
@@ -45,9 +51,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    void OnSceneLoaded (Scene scene)
+    void OnSceneLoaded (Scene scene, LoadSceneMode mode)
     {
         LoadPlayerData();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // Start is called before the first frame update
