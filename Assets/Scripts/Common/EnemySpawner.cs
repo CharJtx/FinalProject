@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemies = 5;
     public float spawnRadius = 10f;
     public float spawnInterval = 2f;
+    public AudioClip explosionSound;
 
     private float playerY;
 
@@ -84,6 +85,7 @@ public class EnemySpawner : MonoBehaviour
 
         // healty
         SmallEnemyHealth health = enemyInstance.AddComponent<SmallEnemyHealth>();
+        health.explosionClip = explosionSound;
 
         // Set enemy spawn position randomly
         Vector3 spawnPosition = transform.position + Random.insideUnitSphere * spawnRadius;

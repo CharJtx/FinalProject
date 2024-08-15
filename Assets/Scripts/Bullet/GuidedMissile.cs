@@ -13,6 +13,7 @@ public class GuidedMissile : BulletBase
     //public int shieldDamange = 50;
     //public float lifeTime = 10f;
     public GameObject explosionEffectPrefab;
+    public AudioClip explosionSound;
 
     public Transform target;
 
@@ -66,20 +67,33 @@ public class GuidedMissile : BulletBase
         if (hp != null)
         {
             hp.TakeDamage(damage);
+            if (explosionSound != null)
+            {
+                SoundEffectManager.instance.playSoundEffect(explosionSound);
+            }
             Destroy(gameObject);
-
+            if (explosionEffectPrefab != null)
+            {
+                Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
+            }
         }
 
         if (shieldCollision != null) 
         {
             shieldCollision.TakeDamage(damage);
+            if (explosionSound != null)
+            {
+                SoundEffectManager.instance.playSoundEffect(explosionSound);
+            }
             Destroy(gameObject);
+
+            if (explosionEffectPrefab != null)
+            {
+                Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
+            }
         }
 
-        if (explosionEffectPrefab != null)
-        {
-            Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
-        }
+        
     }
 
     // Update is called once per frame

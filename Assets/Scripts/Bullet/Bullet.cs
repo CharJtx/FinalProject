@@ -59,7 +59,7 @@ public class Bullet : BulletBase
         
     }
 
-    public void IncreaseBulletDamagebyPercentage(int percentage)
+    public override void  IncreaseBulletDamagebyPercentage(int percentage)
     {
         float increasePercentage = percentage / 100;
         damage = (int) Math.Floor(increasePercentage * damage);

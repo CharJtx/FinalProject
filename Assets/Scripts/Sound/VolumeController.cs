@@ -9,7 +9,9 @@ public class VolumeController : MonoBehaviour
     public Slider soundEffectSlider;
     public float soundEffectVolume = 0.5f;
     public GameObject bgmObject;
+    public GameObject soundObject;
     private BGMManager bgmManager; 
+    private SoundEffectManager soundEffectManager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,10 @@ public class VolumeController : MonoBehaviour
         {
             bgmManager = bgmObject.GetComponent<BGMManager>();
         }
+        if (soundObject != null)
+        {
+            soundEffectManager = soundObject.GetComponent<SoundEffectManager>();
+        }
 
         if (bgmSlider != null && bgmManager != null)
         {
@@ -27,16 +33,26 @@ public class VolumeController : MonoBehaviour
             bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         }
 
-        if (soundEffectSlider != null)
+        if (soundEffectSlider != null && soundEffectManager != null)
         {
-            soundEffectSlider.value = soundEffectVolume;
+            soundEffectSlider.value = soundEffectManager.getVolume();
+            soundEffectSlider.onValueChanged.AddListener(SetBGMVolume);
         }
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetSoundEffectVolume(float volume)
+    {
+        if (soundEffectManager != null)
+        {
+            soundEffectManager.SetVolume(volume);
+        }
     }
 
     public void SetBGMVolume(float volume)

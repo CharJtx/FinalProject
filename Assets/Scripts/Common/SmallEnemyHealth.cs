@@ -8,6 +8,7 @@ public class SmallEnemyHealth : MonoBehaviour,IHealth
     public int maxHealth = 100;
     private int currentHealth;
     private GameObject[] explosionPrefabs;
+    public AudioClip explosionClip;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,8 @@ public class SmallEnemyHealth : MonoBehaviour,IHealth
 
         GameObject explosionEffectPrefab = explosionPrefabs[Random.Range(0, explosionPrefabs.Length)];
         Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
+
+        SoundEffectManager.instance.playSoundEffect(explosionClip);
 
         if (transform.parent != null)
         {

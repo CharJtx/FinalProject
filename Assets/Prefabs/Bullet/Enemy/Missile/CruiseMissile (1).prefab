@@ -380,13 +380,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  lifeTime: 5
+  damage: 50
+  shieldDamange: 5
   turnSpeed: 5
   detectionRadius: 50
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  damage: 50
   explosionEffectPrefab: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: fc96116dc3c141440aabb5605744fea2, type: 3}
   target: {fileID: 0}
 --- !u!1 &4969721603666441386
 GameObject:
