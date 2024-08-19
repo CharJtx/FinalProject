@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public float getSpeed()
+    {
+        return moveSpeed;
+    }
 
     void Update()
     {

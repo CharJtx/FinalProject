@@ -36,6 +36,7 @@ public class ItemBase : MonoBehaviour
     public void StartFlyingToPlayer(Transform player)
     {
         playerTransform = player;
+        flySpeed = player.GetComponent<PlayerController>().getSpeed() * 2;
         isFlyingToPlayer = true;
     }
 

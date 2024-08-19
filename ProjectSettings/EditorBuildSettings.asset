@@ -9,15 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 9803434238ac55248a31fa575ae97d1c
   - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: ad78538a131c36c4cb9e97ecc1bfa73f
+  - enabled: 1
     path: Assets/Scenes/test.unity
     guid: ae8a8fb79b6bba9449c37528ec7551ce
   - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 8263ebc3e84e5e84ca2810184316c53e
   - enabled: 1
-    path: Assets/Scenes/SpaceStation.unity
-    guid: c75f4487b8c23e347aeefe71b8c5764d
-  - enabled: 1
     path: Assets/Scenes/Treasure.unity
-    guid: 0ea312f238d416f4eb526784b179e941
+    guid: 5b60d9efbf881bc4fa28f14cad8030b7
+  - enabled: 1
+    path: Assets/Scenes/SpaceStation.unity
+    guid: 7c7737c56fce96f438f92449bb923464
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 00f2c97588200e64abbbbb878e5ae375
   m_configObjects: {}

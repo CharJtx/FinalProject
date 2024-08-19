@@ -18,7 +18,7 @@ public class BGMManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -30,7 +30,18 @@ public class BGMManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playBGM(bgmA);
+        if (bgmA != null)
+        {
+            playBGM(bgmA);
+        }
+        else
+        {
+            playBGM(bgmB);
+            audioSource.loop = true;
+            isBgmBPlaying = true;
+        }
+
+       
     }
 
     // Update is called once per frame

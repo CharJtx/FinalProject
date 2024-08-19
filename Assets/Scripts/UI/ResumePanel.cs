@@ -8,6 +8,20 @@ public class ResumePanel : MonoBehaviour
     public Button resumeButton;
     public Button pauseButton;
     public GameObject pausePanel;
+    public static ResumePanel instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            GameManager.Instance.RegisterPersistentObject(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +37,8 @@ public class ResumePanel : MonoBehaviour
 
         pauseButton.onClick.AddListener(showPausePanel);
         resumeButton.onClick.AddListener(hidePausePanel);
+
+        
 
     }
 

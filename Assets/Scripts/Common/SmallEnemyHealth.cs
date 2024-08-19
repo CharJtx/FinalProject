@@ -45,6 +45,12 @@ public class SmallEnemyHealth : MonoBehaviour,IHealth
             dropItemManager.DropItem(transform,0);
         }
 
+
+        if (EnemySpawner.instance != null)
+        {
+            EnemySpawner.instance.EnemyDeath(1);
+        }
+
         GameObject explosionEffectPrefab = explosionPrefabs[Random.Range(0, explosionPrefabs.Length)];
         Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
 
@@ -58,6 +64,7 @@ public class SmallEnemyHealth : MonoBehaviour,IHealth
         {
             Destroy(gameObject);
         }
+
 
     }
 

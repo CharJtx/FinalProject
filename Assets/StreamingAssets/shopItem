@@ -1,0 +1,24 @@
+{
+    "items":[
+        {
+            "itemName": "health recover",
+            "description": "health recover 50%",
+            "value":50,
+            "icon": "Wrench",
+            "price": 0,
+            "type":"",
+            "branch":"Health",
+            "method":"restoreHPbyPercent"
+        },
+        {
+            "itemName": "health recover",
+            "description": "health recover 30%",
+            "value":30,
+            "icon": "Wrench",
+            "price": 0,
+            "type":"",
+            "branch":"Health",
+            "method":"restoreHPbyPercent"
+        }
+    ]
+}

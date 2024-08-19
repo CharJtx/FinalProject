@@ -15,7 +15,7 @@ public class MainMenuManger : MonoBehaviour
 
     void StartGame()
     {
-        SceneManager.LoadScene("test");
+        SceneManager.LoadScene("Start");
     }
 
     // Update is called once per frame

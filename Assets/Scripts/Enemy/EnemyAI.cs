@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public enum EnemyState { Patrolling, Chasing, Attacking, Dead}
+    public enum EnemyState { Patrolling, Chasing, Attacking, Dead }
     public EnemyState currentState = EnemyState.Patrolling;
 
     public Transform[] patrolPoints;
-    public float chaseDistance = 10f;
+    public float chaseDistance = 2000f;
     public float attackDistance = 15f;
     public float attackCooldown = 1f;
     public int health = 100;
@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour
         {
             initialY = childObject.transform.position.y;
         }
-       
+
     }
 
     // Update is called once per frame
@@ -110,16 +110,20 @@ public class EnemyAI : MonoBehaviour
             childObject.transform.rotation = rotation;
         }
 
-        
+
     }
 
     void Patrol()
     {
-        if (agent.remainingDistance < agent.stoppingDistance)
+        if (patrolPoints != null)
         {
-            currentPatrolIndex = (currentPatrolIndex + 1)% patrolPoints.Length;
-            agent.SetDestination(player.position);
+            if (agent.remainingDistance < agent.stoppingDistance)
+            {
+                currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+                agent.SetDestination(player.position);
+            }
         }
+
     }
 
     void Chase()
@@ -132,7 +136,7 @@ public class EnemyAI : MonoBehaviour
         if (attackTimer <= 0f & player != null)
         {
             Vector3 directionToPlayer = player.position - transform.position;
-            
+
             Vector3 forward = transform.forward;
 
             directionToPlayer.y = forward.y;
@@ -146,7 +150,7 @@ public class EnemyAI : MonoBehaviour
                 Debug.Log("Enemy attack the player!");
                 attackTimer = attackCooldown;
             }
-            
+
         }
     }
 }

@@ -58,4 +58,11 @@ public class Health : MonoBehaviour, IHealth
     {
         maxHealth += value;
     }
+
+    public void restoreHPbyPercent(int percent)
+    {
+        float percentage = percent / 100;
+        currentHealth = Mathf.Max(currentHealth + (int)Math.Floor(maxHealth * percentage), maxHealth);
+        Debug.Log(percentage);
+    }
 }

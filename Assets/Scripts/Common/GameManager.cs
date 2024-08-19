@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            player.transform.position = playerTransform.position;
+            //player.transform.position = playerTransform.position;
         }
     }
 
