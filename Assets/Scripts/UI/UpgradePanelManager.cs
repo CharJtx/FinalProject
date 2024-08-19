@@ -26,11 +26,21 @@ public class UpgradePanelManager : MonoBehaviour
     private float panelWidth;
     private float panelHeight;
     private GUIStyle textBoxStyle;
+    public static UpgradePanelManager instance;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         //upgradePanel.SetActive(false);
         screenHight = Screen.height;
         screenWidth = Screen.width;
@@ -116,7 +126,7 @@ public class UpgradePanelManager : MonoBehaviour
         }
     }
 
-    public void ShowUpgradeOptions()
+    public bool ShowUpgradeOptions()
     {
         selectedUpgradOptions.Clear();
         valueList.Clear();
@@ -143,6 +153,8 @@ public class UpgradePanelManager : MonoBehaviour
 
         Time.timeScale = 0;
         showWindow = true;
+
+        return true;
     }
 
     void OnUpgradeButtonClicked(UpgradeOption option, int value)

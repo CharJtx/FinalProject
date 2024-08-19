@@ -283,8 +283,8 @@ MonoBehaviour:
   battleButton: {fileID: 3656377180970951797, guid: 8017f2b505c3fc84a8671cbe5b6f193b, type: 3}
   spaceStationButton: {fileID: 3655982561263507299, guid: 696c70cc1148cf94ab19a22c9faf8b19, type: 3}
   treasureButton: {fileID: 1372098846402121740, guid: 359499c8c3014fb4094d5aba89acdfc3, type: 3}
-  startButton: {fileID: 0}
-  endButton: {fileID: 0}
+  startButton: {fileID: 3656377180970951797, guid: a0183459166c9d54685c915cfa13cd0e, type: 3}
+  endButton: {fileID: 3656377180970951797, guid: e9909761502597b429f0becdc81c471f, type: 3}
   seed: 0
   arrow: {fileID: 4736496719924527264, guid: 59df62dfbad233a46a7863b4d82c5707, type: 3}
 --- !u!114 &78969170

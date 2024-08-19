@@ -15,8 +15,8 @@ public class SpaceStationManager : MonoBehaviour
     public GameObject shopObj;
     public List<ShopItem> shopItems = new List<ShopItem>();
     public Button itemButton;
-    public RectTransform shopScrollRectTransform;
-    public RectTransform contentRectTransform;
+    public RectTransform shopScrollRectTransform ;
+    public RectTransform contentRectTransform ;
     public Button exitButton;
     public List<IconData> iconDataList = new List<IconData>();
 
@@ -25,15 +25,40 @@ public class SpaceStationManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (exitButton != null)
+       
+        if (GameObject.Find("Canvas") != null)
         {
-            exitButton.onClick.AddListener(ExitShop);
+            Transform tmpScroll = MyTools.FindChildByName(GameObject.Find("Canvas").transform, "ShopScroll");
+            if (tmpScroll != null) 
+            {
+                shopScrollRectTransform = tmpScroll.GetComponent<RectTransform>();
+            }
+
+            Transform tmpContent = MyTools.FindChildByName(GameObject.Find("Canvas").transform, "ShopContent");
+            if (tmpContent != null)
+            {
+                contentRectTransform = tmpContent.GetComponent<RectTransform>();
+            }
+
+            Transform tmpExitButton = MyTools.FindChildByName(GameObject.Find("Canvas").transform, "ExitShop");
+            if (tmpExitButton != null)
+            {
+                exitButton = tmpExitButton.GetComponent<Button>();
+                exitButton.onClick.AddListener(ExitShop);
+            }
+
         }
+        
 
         if (shopScrollRectTransform != null)
         {
             shopScrollRectTransform.gameObject.SetActive(false);
         }
+        else
+        {
+            
+        }
+
 
         LoadIcons();
         LoadItems();
@@ -128,7 +153,9 @@ public class SpaceStationManager : MonoBehaviour
         if (shopScrollRectTransform!= null)
         {
             shopScrollRectTransform.gameObject.SetActive(false);
+           
         }
+        Time.timeScale = 1f;
     }
 
     void OpenShop()
@@ -136,6 +163,7 @@ public class SpaceStationManager : MonoBehaviour
         if (shopScrollRectTransform != null)
         {
             shopScrollRectTransform.gameObject.SetActive(true);
+            DirectionLine.instance.ChangeTarget();
         }
     }
 

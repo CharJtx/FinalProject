@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 minBounds = new Vector2(-50, -50); // 活动范围的最小边界
     public Vector2 maxBounds = new Vector2(50, 50); // 活动范围的最大边界
 
-    private static PlayerController instance;
+    public static PlayerController instance;
 
     private void Awake()
     {
