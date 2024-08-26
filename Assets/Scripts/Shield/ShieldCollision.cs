@@ -10,7 +10,9 @@ public class ShieldCollision : MonoBehaviour
     float hitTime;
     Material material;
     public int shieldValue = 100;
+    public int currentValue = 0;
     private Collider shieldCollider;
+    public int recoverTime = 5;
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class ShieldCollision : MonoBehaviour
         {
             material = GetComponent<Renderer>().sharedMaterial;
         }
+        currentValue = shieldValue;
 
     }
 
@@ -75,21 +78,24 @@ public class ShieldCollision : MonoBehaviour
 
     public void TakeDamage (int damage)
     {
-        shieldValue -= damage;
-        if (shieldValue <= 0)
+        currentValue -= damage;
+        if (currentValue <= 0)
         {
-            shieldValue = 0;
+            currentValue = 0;
             DeactivateShield();
         }
     }
 
     void DeactivateShield()
     {
+        GameManager.Instance.StartShieldReactivationCoroutine(ReactiveShieldAfterDelay());
         if (shieldCollider != null)
         {
             shieldCollider.enabled = false; // 禁用护盾的Collider
         }
         gameObject.SetActive(false);
+
+        
     }
 
     public void IncreaseMaxShieldbyPercent(int percent)
@@ -101,6 +107,33 @@ public class ShieldCollision : MonoBehaviour
     public void IncreaseMaxShieldbyValue(int value)
     {
         shieldValue += value;
+    }
+
+    private IEnumerator ReactiveShieldAfterDelay()
+    {
+        yield return new WaitForSeconds(recoverTime);
+
+        if (gameObject != null)
+        {
+            gameObject.SetActive(true);
+            if (shieldCollider != null)
+            {
+                shieldCollider.enabled = true;
+            }
+
+            currentValue = shieldValue;
+        }
+        
+    }
+
+    public int GetMaxCurrentShieldValue(int value)
+    {
+        return shieldValue;
+    }
+
+    public int GetCurrentShieldValue()
+    {
+        return currentValue;
     }
 }
 

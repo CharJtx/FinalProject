@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class GuidedMissile : BulletBase
 {
-    //public float speed = 10f;
+    public float setSpeed = 10f;
     public float turnSpeed = 5f;
     public float detectionRadius = 50f;
     public LayerMask enemyLayer;
-    //public int damage = 50;
-    //public int shieldDamange = 50;
-    //public float lifeTime = 10f;
+    public int setDamage = 50;
+    public int setShieldDamange = 50;
+    public float setLifeTime = 10f;
     public GameObject explosionEffectPrefab;
     public AudioClip explosionSound;
 
@@ -20,10 +20,10 @@ public class GuidedMissile : BulletBase
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10f;
-        damage = 50;
-        shieldDamange = 50;
-        lifeTime = 10f;
+        speed = setSpeed;
+        damage = setDamage;
+        shieldDamange = setShieldDamange;
+        lifeTime = setLifeTime;
         Destroy(gameObject, lifeTime);
         FindClosestEnemy();
     }

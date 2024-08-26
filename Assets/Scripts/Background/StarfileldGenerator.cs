@@ -5,8 +5,10 @@ using UnityEngine;
 public class StarfileldGenerator : MonoBehaviour
 {
 
-    public int maxNnumberOfPlanet;
+    public int maxNumberOfPlanet;
+    public int minNumberOfPlanet=10;
     public int maxNumberOfStars;
+    public int minNumberOfStars = 500;
     public int maxDeep = 50;
     public Vector2 fieldSize = new Vector2 (100, 100);
     public GameObject planetPrefab;
@@ -39,8 +41,8 @@ public class StarfileldGenerator : MonoBehaviour
 
     void GenerateStarfield()
     { 
-        int numberOfPlanet = Random.Range (1, maxNnumberOfPlanet);
-        int numberOfStars = Random.Range (100, maxNumberOfStars);
+        int numberOfPlanet = Random.Range (minNumberOfPlanet, maxNumberOfPlanet);
+        int numberOfStars = Random.Range (minNumberOfStars, maxNumberOfStars);
 
         for (int i = 0; i < numberOfPlanet; i++)
         {

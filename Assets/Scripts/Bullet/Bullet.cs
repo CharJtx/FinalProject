@@ -16,10 +16,6 @@ public class Bullet : BulletBase
     // Start is called before the first frame update
     void Start()
     {
-        speed = 20f;
-        damage = 5;
-        shieldDamange = 10;
-        lifeTime = 5f;
         Destroy(gameObject, lifeTime);
     }
 
@@ -62,7 +58,7 @@ public class Bullet : BulletBase
     public override void  IncreaseBulletDamagebyPercentage(int percentage)
     {
         float increasePercentage = percentage / 100;
-        damage = (int) Math.Floor(increasePercentage * damage);
+        damage = (int) Math.Ceiling(increasePercentage * damage);
     }
 
     public override string BulletType()

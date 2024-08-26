@@ -8,4 +8,6 @@ public class UpgradeOption
     public string type;
     public string branch;
     public string method;
+    public int max;
+    public int min;
 }

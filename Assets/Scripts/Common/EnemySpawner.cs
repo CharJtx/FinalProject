@@ -8,6 +8,9 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] enemyModels;
     public Material[] enemyMaterials;
+    public GameObject[] bulletPrefab;
+    public BattleTimer battleTimer;
+    public EnemyLeft enemyLeft;
     //public GameObject[] enemySpawnPoints;
     public int minEnemies = 1;
     public int maxEnemies = 5;
@@ -16,19 +19,25 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRadius = 50f;
     public float spawnInterval = 2f;
     public AudioClip explosionSound;
-    public float countdownTime = 40f;
+    public float countdownTime = 120f ;
     public Text countdownText;
     public float minXZ = -5000;
     public float maxXZ = 5000;
     public static EnemySpawner instance;
 
-    private int wave;
-    //private List<string> gameModes = new List<string>() {"TimingMode","AnnMode" };
-    private List<string> gameModes = new List<string>() { "TimingMode" };
+    // Enemy AI setting
+    public float fireCutDown = 5f;
+    public float attackDistance = 100;
+    public float chaseDistance = 10000;
+    public float speed = 15f;
+
+    public int wave = 10;
+    //private List<string> gameModes = new List<string>() { "TimingMode", "AnnMode" };
+    private List<string> gameModes = new List<string>() { "AnnMode" };
     private float playerY;
     private bool isSpawning = true;
     private Transform playerTransform;
-    private int remainingEnemy = 0;
+    public int remainingEnemy = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -54,20 +63,20 @@ public class EnemySpawner : MonoBehaviour
         Vector3 randomPosition;
         do
         {
-            // 在XZ平面上生成随机半径和角度
+            // Generate random radii and angles in the XZ plane
             float randomRadius = Random.Range(0, spawnRadius);
             float randomAngle = Random.Range(0, Mathf.PI * 2);
 
-            // 将极坐标转换为直角坐标
+            // Convert polar coordinates to cartesian coordinates
             float x = Mathf.Cos(randomAngle) * randomRadius;
             float z = Mathf.Sin(randomAngle) * randomRadius;
 
-            // 计算相对于玩家位置的生成点
+            // Calculate the generation point relative to the player's position
             randomPosition = new Vector3(playerTransform.position.x + x, playerTransform.position.y, playerTransform.position.z + z);
 
         } while (randomPosition.x < minXZ || randomPosition.x > maxXZ || randomPosition.z < minXZ || randomPosition.z > maxXZ);
 
-        // 返回有效范围内的随机位置
+        // Return to a random location within the effective range
         return randomPosition;
     }
 
@@ -81,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
                 StartCoroutine(Countdown());
                 break;
             case "AnnMode":
-                AnnModeSpawnEnemies();
+                StartCoroutine(AnnModeSpawnEnemies());
                 break;
         }
     }
@@ -101,6 +110,11 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator AnnModeSpawnEnemies()
     {
+        if (enemyLeft != null)
+        {
+            enemyLeft.showWindow = true;
+        }
+
         wave = Random.Range(5, 20);
         while (wave > 0)
         {
@@ -116,6 +130,12 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator Countdown()
     {
+
+        if (battleTimer !=null)
+        {
+            battleTimer.showWindow = true;
+        }
+
         while (countdownTime > 0)
         {
             countdownTime -= Time.deltaTime;
@@ -142,9 +162,9 @@ public class EnemySpawner : MonoBehaviour
         //    spawnObj = gameObject;
         //}
 
-        if (GameObject.FindGameObjectsWithTag("Player") != null)
+        if (PlayerController.instance != null)
         {
-            playerTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+            playerTransform = PlayerController.instance.transform;
         }
         
 
@@ -186,11 +206,15 @@ public class EnemySpawner : MonoBehaviour
         NavMeshAgent navMeshAgent = enemy.AddComponent<NavMeshAgent>();
         navMeshAgent.height = 0;
         navMeshAgent.angularSpeed = 10;
-        navMeshAgent.stoppingDistance = 20;
+        navMeshAgent.stoppingDistance = attackDistance/2;
+        navMeshAgent.speed = speed;
 
         // EnemyAI
         EnemyAI enemyScript = enemy.AddComponent<EnemyAI>();
-        enemyScript.chaseDistance = 1000;
+        enemyScript.bulletPrefab = bulletPrefab[Random.Range(0,bulletPrefab.Length)];
+        enemyScript.chaseDistance = chaseDistance;
+        enemyScript.attackDistance = attackDistance;
+        enemyScript.attackCooldown = fireCutDown;
 
         // healty
         SmallEnemyHealth health = enemyInstance.AddComponent<SmallEnemyHealth>();
@@ -224,7 +248,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(countdownTime);
+        //Debug.Log(countdownTime);
         ScenceOver();
     }
 }

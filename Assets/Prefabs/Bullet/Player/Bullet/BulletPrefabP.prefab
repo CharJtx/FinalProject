@@ -73,10 +73,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722ab835f24bd244593017d24538fa32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  lifetime: 5
-  damage: 10
-  shieldDamange: 5
+  speed: 100
+  lifeTime: 5
+  damage: 20
+  shieldDamange: 20
   explosionEffectPrefab: {fileID: 0}
 --- !u!1 &3725526577306993817
 GameObject:

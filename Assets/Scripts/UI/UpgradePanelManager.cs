@@ -141,11 +141,11 @@ public class UpgradePanelManager : MonoBehaviour
             int randomValue = 0;
             if (option.type == "value")
             {
-                randomValue = Random.Range(10, 100);
+                randomValue = Random.Range(option.min, option.max);
             }
             else if (option.type == "percentage")
             {
-                randomValue = Random.Range(1, 50);
+                randomValue = Random.Range(option.min, option.max);
             }
 
             valueList.Add(randomValue);

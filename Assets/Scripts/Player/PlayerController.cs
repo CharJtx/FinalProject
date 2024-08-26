@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 100f;
     public Vector2 minBounds = new Vector2(-50, -50); // 活动范围的最小边界
     public Vector2 maxBounds = new Vector2(50, 50); // 活动范围的最大边界
+
+    public CameraFollow cameraFollow;
 
     public static PlayerController instance;
 
@@ -21,6 +25,12 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+
+    private void Start()
+    {
+        cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        cameraFollow.target = transform;
     }
 
     public float getSpeed()
@@ -62,4 +72,6 @@ public class PlayerController : MonoBehaviour
         // 应用新的位置
         transform.position = position;
     }
+
+    
 }

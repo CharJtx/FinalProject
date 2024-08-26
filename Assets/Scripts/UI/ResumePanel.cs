@@ -7,6 +7,7 @@ public class ResumePanel : MonoBehaviour
 {
     public Button resumeButton;
     public Button pauseButton;
+    public Button exitButton;
     public GameObject pausePanel;
     public static ResumePanel instance;
 
@@ -37,9 +38,15 @@ public class ResumePanel : MonoBehaviour
 
         pauseButton.onClick.AddListener(showPausePanel);
         resumeButton.onClick.AddListener(hidePausePanel);
+        exitButton.onClick.AddListener(ExitGame);
 
         
 
+    }
+
+    void ExitGame()
+    {
+        Application.Quit();
     }
 
     void showPausePanel ()

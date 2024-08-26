@@ -6,7 +6,9 @@
             "description":"Increases attack power by {Num}%",
             "type":"percentage",
             "branch":"ShipShooting",
-            "method":"IncreaseBulletDamagebyPercentage"
+            "method":"IncreaseBulletDamagebyPercentage",
+            "min": 5,
+            "max":10
         },
         {
             "id":"2",
@@ -14,7 +16,9 @@
             "description":"Increases Max HP by {Num}%",
             "type":"percentage",
             "branch":"Health",
-            "method":"IncreaseMaxHPbyPercent"
+            "method":"IncreaseMaxHPbyPercent",
+            "min": 5,
+            "max":10
         },
         {
             "id":"3",
@@ -22,7 +26,9 @@
             "description":"Increases Max HP by {Num}",
             "type":"value",
             "branch":"Health",
-            "method":"IncreaseMaxHPbyValue"
+            "method":"IncreaseMaxHPbyValue",
+            "min": 5,
+            "max":10
         },
         {
             "id":"4",
@@ -30,7 +36,9 @@
             "description":"Increases Max shield by {Num}%",
             "type":"percentage",
             "branch":"ShieldCollision",
-            "method":"IncreaseMaxShieldbyPercent"
+            "method":"IncreaseMaxShieldbyPercent",
+            "min": 5,
+            "max":10
         },
         {
             "id":"5",
@@ -38,7 +46,9 @@
             "description":"Increases Max shield by {Num}",
             "type":"value",
             "branch":"ShieldCollision",
-            "method":"IncreaseMaxShieldbyValue"
+            "method":"IncreaseMaxShieldbyValue",
+            "min": 5,
+            "max":10
         }
     ]
 }

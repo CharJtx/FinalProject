@@ -41,6 +41,20 @@ public class LevelControl : MonoBehaviour
                 upgradePanelManager.ShowUpgradeOptions();
             }
             level++;
+            IncreaseUpperBound();
         }
+    }
+
+    public void IncreaseUpperBound()
+    {
+        if (level <10)
+        {
+            expUpperBound = level * 2;
+        }
+        else
+        {
+            expUpperBound += (float)Math.Pow(2, (level - 9));
+        }
+        
     }
 }

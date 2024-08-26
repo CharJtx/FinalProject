@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour
     public int health = 100;
     public GameObject childObject;
     public float angleThreshold = 3f;
+    public GameObject bulletPrefab; // bullet Prefab
+    //public Transform bulletSpawnPoint; // bullet Spawn Point
 
     private NavMeshAgent agent;
     private int currentPatrolIndex = 0;
@@ -49,6 +51,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if (currentState == EnemyState.Dead) return;
+        if (player == null) return;
 
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
@@ -147,7 +150,9 @@ public class EnemyAI : MonoBehaviour
 
             if (angle < angleThreshold)
             {
-                Debug.Log("Enemy attack the player!");
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+                BulletBase bulletBase = bullet.GetComponent<BulletBase>();
+                bulletBase.speed = attackDistance/bulletBase.lifeTime;
                 attackTimer = attackCooldown;
             }
 

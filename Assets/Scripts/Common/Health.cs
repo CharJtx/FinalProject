@@ -32,6 +32,11 @@ public class Health : MonoBehaviour, IHealth
     void Die() 
     {
 
+        CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        cameraFollow.StopFollowing();
+
+        GameManager.Instance.GameOver(false);
+
         if (transform.parent != null)
         {
             Destroy(transform.parent.gameObject);

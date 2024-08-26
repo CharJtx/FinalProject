@@ -10,6 +10,7 @@ TagManager:
   - Canvas
   - MapPanel
   - Button
+  - EndingPanel
   layers:
   - Default
   - TransparentFX

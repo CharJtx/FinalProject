@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class BulletBase : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 100f;
     public float lifeTime = 5f;
     public int damage = 10;
-    public int shieldDamange = 5;
+    public int shieldDamange = 10;
 
     // Use this for initialization
     void Start()
@@ -29,7 +29,7 @@ public class BulletBase : MonoBehaviour
     public virtual void IncreaseBulletDamagebyPercentage(int percentage)
     {
         float increasePercentage = percentage / 100;
-        damage = (int)Math.Floor(increasePercentage * damage);
+        damage = (int)Math.Ceiling(increasePercentage * damage);
     }
 
     public virtual void IncreaseBulletDamagebyValue(int value)
