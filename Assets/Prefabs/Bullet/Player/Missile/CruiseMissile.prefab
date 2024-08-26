@@ -381,7 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 70
   lifeTime: 5
-  damage: 10
+  damage: 20
   shieldDamange: 10
   setSpeed: 70
   turnSpeed: 5
@@ -389,7 +389,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  setDamage: 10
+  setDamage: 20
   setShieldDamange: 10
   setLifeTime: 5
   explosionEffectPrefab: {fileID: 0}

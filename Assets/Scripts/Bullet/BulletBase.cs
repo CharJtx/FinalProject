@@ -28,7 +28,7 @@ public class BulletBase : MonoBehaviour
 
     public virtual void IncreaseBulletDamagebyPercentage(int percentage)
     {
-        float increasePercentage = percentage / 100;
+        float increasePercentage = percentage / 100f;
         damage = (int)Math.Ceiling(increasePercentage * damage);
     }
 

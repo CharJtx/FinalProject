@@ -121,13 +121,23 @@ public class ShieldCollision : MonoBehaviour
 
     public void IncreaseMaxShieldbyPercent(int percent)
     {
-        float percentage = percent / 100;
+        float percentage = percent / 100f;
         ShieldValue = (int) Math.Floor(percentage* ShieldValue);
     }
 
     public void IncreaseMaxShieldbyValue(int value)
     {
         ShieldValue += value;
+    }
+
+    public int GetMaxCurrentShieldValue()
+    {
+        return shieldValue;
+    }
+
+    public int GetCurrentShieldValue()
+    {
+        return currentValue;
     }
 
     private IEnumerator ReactiveShieldAfterDelay()
