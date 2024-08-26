@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour, IHealth
 {
@@ -11,7 +10,7 @@ public class Health : MonoBehaviour, IHealth
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        CurrentHealth = MaxHealth;
     }
 
     // Update is called once per frame
@@ -21,9 +20,9 @@ public class Health : MonoBehaviour, IHealth
     }
 
     public void TakeDamage(int damage)
-    { 
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+    {
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
         {
             Die();
         }
@@ -48,26 +47,67 @@ public class Health : MonoBehaviour, IHealth
         
     }
 
-    public int GetCurrentHealth()
+    public int CurrentHealth
     { 
-        return currentHealth;
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            currentHealth = value;
+            ChangeHPSlide();
+        }
+        
+    }
+
+    public int MaxHealth
+    {
+        get
+        {
+            return maxHealth;
+        }
+        set
+        {
+            maxHealth = value;
+            ChangeHPSlide();
+        }
     }
 
     public void IncreaseMaxHPbyPercent( int percent)
     {
         float percentage = percent / 100;
-        maxHealth = (int)Math.Floor(maxHealth * percentage);
+        MaxHealth = (int)Math.Floor(MaxHealth * percentage);
+        ChangeHPSlide();
     }
 
     public void IncreaseMaxHPbyValue( int value)
     {
-        maxHealth += value;
+        MaxHealth += value;
+        ChangeHPSlide();
     }
 
     public void restoreHPbyPercent(int percent)
     {
         float percentage = percent / 100;
-        currentHealth = Mathf.Max(currentHealth + (int)Math.Floor(maxHealth * percentage), maxHealth);
+        CurrentHealth = Mathf.Max(CurrentHealth + (int)Math.Floor(MaxHealth * percentage), maxHealth);
         Debug.Log(percentage);
+        ChangeHPSlide();
+    }
+
+    public void ChangeHPSlide()
+    {
+        Transform canvasTransform = GameObject.FindGameObjectWithTag("Canvas").transform;
+        if (canvasTransform != null)
+        {
+            Transform sliderTransform = MyTools.FindChildByName(canvasTransform, "HPSlider");
+            if (sliderTransform != null)
+            {
+                Slider slider = sliderTransform.GetComponent<Slider>();
+                slider.maxValue = MaxHealth;
+                slider.value = CurrentHealth;
+
+            }
+        }
     }
 }

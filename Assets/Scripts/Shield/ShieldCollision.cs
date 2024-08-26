@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShieldCollision : MonoBehaviour
 {
@@ -14,13 +15,33 @@ public class ShieldCollision : MonoBehaviour
     private Collider shieldCollider;
     public int recoverTime = 5;
 
+    public int ShieldValue
+    {
+        get { return shieldValue; }
+        set
+        {
+            shieldValue = value;
+            ChangeShieldSlide();
+        }
+    }
+
+    public int CurrentValue
+    {
+        get { return currentValue; }
+        set
+        {
+            currentValue = value;
+            ChangeShieldSlide();
+        }
+    }
+
     void Start()
     {
         if (GetComponent<Renderer>())
         {
             material = GetComponent<Renderer>().sharedMaterial;
         }
-        currentValue = shieldValue;
+        CurrentValue = shieldValue;
 
     }
 
@@ -78,10 +99,10 @@ public class ShieldCollision : MonoBehaviour
 
     public void TakeDamage (int damage)
     {
-        currentValue -= damage;
-        if (currentValue <= 0)
+        CurrentValue -= damage;
+        if (CurrentValue <= 0)
         {
-            currentValue = 0;
+            CurrentValue = 0;
             DeactivateShield();
         }
     }
@@ -101,12 +122,12 @@ public class ShieldCollision : MonoBehaviour
     public void IncreaseMaxShieldbyPercent(int percent)
     {
         float percentage = percent / 100;
-        shieldValue = (int) Math.Floor(percentage*shieldValue);
+        ShieldValue = (int) Math.Floor(percentage* ShieldValue);
     }
 
     public void IncreaseMaxShieldbyValue(int value)
     {
-        shieldValue += value;
+        ShieldValue += value;
     }
 
     private IEnumerator ReactiveShieldAfterDelay()
@@ -121,19 +142,26 @@ public class ShieldCollision : MonoBehaviour
                 shieldCollider.enabled = true;
             }
 
-            currentValue = shieldValue;
+            CurrentValue = ShieldValue;
         }
         
     }
 
-    public int GetMaxCurrentShieldValue(int value)
-    {
-        return shieldValue;
-    }
 
-    public int GetCurrentShieldValue()
+    public void ChangeShieldSlide()
     {
-        return currentValue;
+        Transform canvasTransform = GameObject.FindGameObjectWithTag("Canvas").transform;
+        if (canvasTransform != null)
+        {
+            Transform sliderTransform = MyTools.FindChildByName(canvasTransform, "ShieldSlider");
+            if (sliderTransform != null)
+            {
+                Slider slider = sliderTransform.GetComponent<Slider>();
+                slider.maxValue = ShieldValue;
+                slider.value = CurrentValue;
+
+            }
+        }
     }
 }
 
