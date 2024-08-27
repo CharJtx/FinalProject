@@ -3003,7 +3003,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
       propertyPath: maxNumberOfStars
-      value: 1000
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
+      propertyPath: minNumberOfStars
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
       propertyPath: maxNumberOfPlanet

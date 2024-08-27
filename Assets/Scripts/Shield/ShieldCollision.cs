@@ -122,7 +122,7 @@ public class ShieldCollision : MonoBehaviour
     public void IncreaseMaxShieldbyPercent(int percent)
     {
         float percentage = percent / 100f;
-        ShieldValue = (int) Math.Floor(percentage* ShieldValue);
+        ShieldValue += (int) Math.Floor(percentage* ShieldValue);
     }
 
     public void IncreaseMaxShieldbyValue(int value)

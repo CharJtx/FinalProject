@@ -132,15 +132,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
       propertyPath: fieldSize.x
-      value: 5000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
       propertyPath: fieldSize.y
-      value: 5000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
       propertyPath: maxNumberOfStars
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
+      propertyPath: maxNumberOfPlanet
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
+      propertyPath: minNumberOfPlanet
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2918559370486272670, guid: c2ca02a4f356fd94193d4da714a51e73, type: 3}
       propertyPath: maxNnumberOfPlanet
