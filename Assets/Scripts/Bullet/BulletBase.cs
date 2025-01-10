@@ -26,6 +26,7 @@ public class BulletBase : MonoBehaviour
         return "0";
     }
 
+    // Base function of Increase Damage
     public virtual void IncreaseBulletDamagebyPercentage(int percentage)
     {
         float increasePercentage = percentage / 100f;

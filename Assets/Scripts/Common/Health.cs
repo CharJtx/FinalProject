@@ -70,7 +70,6 @@ public class Health : MonoBehaviour, IHealth
         set
         {
             maxHealth = value;
-            ChangeHPSlide();
         }
     }
 
@@ -78,21 +77,18 @@ public class Health : MonoBehaviour, IHealth
     {
         float percentage = percent / 100f;
         MaxHealth += (int)Math.Floor(MaxHealth * percentage);
-        ChangeHPSlide();
     }
 
     public void IncreaseMaxHPbyValue( int value)
     {
         MaxHealth += value;
-        ChangeHPSlide();
     }
 
-    public void restoreHPbyPercent(int percent)
+    public void RestoreHPbyPercent(int percent)
     {
         float percentage = percent / 100;
         CurrentHealth = Mathf.Max(CurrentHealth + (int)Math.Floor(MaxHealth * percentage), maxHealth);
         Debug.Log(percentage);
-        ChangeHPSlide();
     }
 
     public void ChangeHPSlide()

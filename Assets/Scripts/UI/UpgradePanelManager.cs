@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using Newtonsoft.Json;
 using TMPro;
+using Palmmedia.ReportGenerator.Core;
 
 
 public class UpgradePanelManager : MonoBehaviour
@@ -46,8 +47,8 @@ public class UpgradePanelManager : MonoBehaviour
         screenWidth = Screen.width;
         Debug.Log(screenHight);
         Debug.Log(screenWidth);
-        screenHight = 500;
-        screenWidth = 800;
+        //screenHight = 500;
+        //screenWidth = 800;
         panelWidth = screenWidth - 2 * panelSpacing;
         panelHeight = screenHight - 2 * panelSpacing;
 
@@ -77,6 +78,7 @@ public class UpgradePanelManager : MonoBehaviour
     {
         for (int i = 0; i < upgradeButtonCount; i++)
         {
+
             UpgradeOption option = selectedUpgradOptions[i];
             int randomValue = valueList[i];
             string buttonDescription = option.description.Replace("{Num}", randomValue.ToString());
@@ -126,6 +128,7 @@ public class UpgradePanelManager : MonoBehaviour
         }
     }
 
+    // Genetate the random upgrade option list
     public bool ShowUpgradeOptions()
     {
         selectedUpgradOptions.Clear();
@@ -135,10 +138,12 @@ public class UpgradePanelManager : MonoBehaviour
 
         for (int i = 0; i < upgradeButtonCount; i++)
         {
+            // Generate random upgrade options
             UpgradeOption option = upgradeOptions[Random.Range(0, upgradeOptions.Count)];
             selectedUpgradOptions.Add(option);
 
             int randomValue = 0;
+            // generate random upgrade value of option
             if (option.type == "value")
             {
                 randomValue = Random.Range(option.min, option.max);

@@ -140,6 +140,12 @@ public class ShieldCollision : MonoBehaviour
         return currentValue;
     }
 
+    public void RecoverShieldByPercent(int percent)
+    {
+        float percentage = (float)percent / 100f;
+        CurrentValue += Mathf.Max(CurrentValue + (int)Math.Floor(ShieldValue * percentage), ShieldValue);
+    }
+
     private IEnumerator ReactiveShieldAfterDelay()
     {
         yield return new WaitForSeconds(recoverTime);

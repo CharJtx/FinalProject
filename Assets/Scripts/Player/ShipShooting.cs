@@ -7,6 +7,7 @@ public class ShipShooting : MonoBehaviour
     public GameObject bulletPrefab; // 子弹预制件
     public Transform bulletSpawnPoint; // 子弹发射位置
     public float shootRate = 0.5f; // 射击速率
+    public int firePowerLevel = 1;
     private float shootCooldown;
     private int bulletDamagePercent = 0;
     private int bulletDamageValue = 0;
@@ -32,10 +33,22 @@ public class ShipShooting : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        BulletBase bulletBase = bullet.GetComponent<BulletBase>();
-        bulletBase.IncreaseBulletDamagebyPercentage(bulletDamagePercent);
-        bulletBase.IncreaseBulletDamagebyValue(bulletDamageValue);
+        float angleStep = 90f / (firePowerLevel + 1);
+        float startAngle = -45f;
+
+        for (int i = 0; i < firePowerLevel; i++)
+        {
+            float currentAngle = startAngle + ((i+1) * angleStep);
+            Quaternion bulletRotation = Quaternion.Euler(0, currentAngle, 0) * bulletSpawnPoint.rotation;
+
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletRotation);
+            BulletBase bulletBase = bullet.GetComponent<BulletBase>();
+            bulletBase.IncreaseBulletDamagebyPercentage(bulletDamagePercent);
+            bulletBase.IncreaseBulletDamagebyValue(bulletDamageValue);
+
+        }
+
+        
 
         shootCooldown = shootRate;
     }
@@ -45,8 +58,13 @@ public class ShipShooting : MonoBehaviour
         bulletDamagePercent += percentage;
     }
 
-    public void DecreaseBulletDamagebyPercentage(int value) 
+    public void IecreaseBulletDamagebyPercentage(int value) 
     {
         bulletDamageValue += value;
+    }
+
+    public void IncreaseFirePowerLever(int value)
+    {
+        firePowerLevel += value;
     }
 }

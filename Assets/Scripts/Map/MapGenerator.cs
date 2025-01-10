@@ -60,10 +60,10 @@ public class MapGenerator: MonoBehaviour
 
         if (scrollRectTransform != null)
         {
-            float width = Screen.width;
-            float height = Screen.height;
+            float width = mapPanel.GetComponent<RectTransform>().rect.width; ;
+            float height = mapPanel.GetComponent<RectTransform>().rect.height;
 
-            scrollRectTransform.sizeDelta = new Vector2(0.8f * width, 0.8f * height);
+            scrollRectTransform.sizeDelta = new Vector2(width, height);
         }
         else
         {
@@ -90,6 +90,7 @@ public class MapGenerator: MonoBehaviour
         
     }
 
+    // Generate Map Tree
     void GenerateMap()
     {
        
@@ -110,9 +111,12 @@ public class MapGenerator: MonoBehaviour
         for (int i = 0; i < levels; i++)
         {
             MapNodeList currentLevelNodes = new MapNodeList();
+
+            // generate a random number for how many maps in a level
             int nodesNumInLevel = UnityEngine.Random.Range(MinNodesPerLevel, MaxNodesPerLevel);
             for (int j = 0; j < nodesNumInLevel; j++)
             {
+                // random select the type of map
                 string typeOfNode = nodeTypes[UnityEngine.Random.Range(0, nodeTypes.Count)];
                 MapNode currentNode = new MapNode(i, typeOfNode);
                 currentNode.order = j;
@@ -123,20 +127,24 @@ public class MapGenerator: MonoBehaviour
             allNodes.Add(currentLevelNodes);
         }
 
+        // generate start node information and its position
         startNode = new MapNode(-1, "Start");
         startNode.posX = spaces[1];
         startNode.posY = -100;
 
+        // add the first level as next nodes of Start node
         for (int i = 0; i < allNodes[0].nodes.Count; i++)
         {
             startNode.Children.Add(allNodes[0].nodes[i]);
         }
-
+        
+        // generate the end node information and its position
         endNode = new MapNode(levels, "End");
         endNode.order = 0;
         endNode.posX = spaces[1];
         endNode.posY = -(ySpace * (levels + 2) + 100);
 
+        // add the end node into the node list
         MapNodeList endNodeList = new MapNodeList();
         endNodeList.nodes.Add(endNode);
         allNodes.Add(endNodeList);
@@ -145,11 +153,14 @@ public class MapGenerator: MonoBehaviour
 
         for (int i = 0; i < levels; i++)
         {
+            // select the node in level i
             int nodesNumInThisLevel = allNodes[i].nodes.Count;
             for (int j = 0; j < nodesNumInThisLevel; j++)
             {
+                // if this level is not the last level
                 if (i < levels)
                 {
+                    // generate the next ndoes which contect to this node
                     GenerateMapTree(allNodes[i].nodes[j], allNodes[i + 1], 0);
                 }
                 // calculate posX
@@ -166,16 +177,19 @@ public class MapGenerator: MonoBehaviour
 
     void GenerateMapTree(MapNode currentNode, MapNodeList nextLevelNodes,int currentLevel)
     {
+        // if this level is the last level or this level tree has been generated,return
         if (currentLevel >= allNodes.Count - 1 || currentNode.beGenerated)
         {
                 return;
         }
         else
         {
+            // this function is use to random generate which node should be next node.
             int[] randomPath = MyTools.RandomlyGenerateArray(1, nextLevelNodes.nodes.Count);
 
             for (int i = 0; i < randomPath.Length; i++)
             {
+                // add the next node as a child of current node
                 MapNode nextNode = nextLevelNodes.nodes[randomPath[i]];
                 currentNode.Children.Add(nextNode);
             }
@@ -296,6 +310,8 @@ public class MapGenerator: MonoBehaviour
 
     void ScenceButtonClick(string scenceType,int level, int nodeOrder)
     {
+        HidePanel();
+
         GameManager.Instance.ChangeScene(scenceType);
 
         if (level >= 0)
@@ -321,8 +337,7 @@ public class MapGenerator: MonoBehaviour
             }
             nowLevel += 1;
             Debug.Log(nowLevel);
-            mapPanel.SetActive(false);
-            Time.timeScale = 1f;
+            
         }
 
         
@@ -335,13 +350,19 @@ public class MapGenerator: MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    public void HidePanel()
+    { 
+        mapPanel.SetActive(false);
+        Canvas.ForceUpdateCanvases();
+        Time.timeScale = 1f;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.M))
         {
-            mapPanel.SetActive(true);
-            Time.timeScale = 0f;
+            ShowPanel();
         }
         else if (Input.GetKey(KeyCode.N))
         {

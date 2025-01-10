@@ -73,5 +73,13 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
     }
 
-    
+    public void IncreaseSpeedByValue(float speed)
+    {
+        moveSpeed += speed;
+    }
+
+    public void IncreaseTurnSpeedByValue(float speed)
+    {
+        turnSpeed += speed;
+    }
 }

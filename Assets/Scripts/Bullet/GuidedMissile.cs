@@ -36,9 +36,12 @@ public class GuidedMissile : BulletBase
         //} else if (transform.gameObject.layer == 8) {
         //    enemyLayer = 6; 
         //}
+
+        // Find all enemies within range
         Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius, enemyLayer);
         float closestDistance = Mathf.Infinity;
 
+        // find the closest one
         foreach (Collider hit in hits)
         {
             if (!hit.CompareTag("Bullet"))
@@ -56,10 +59,13 @@ public class GuidedMissile : BulletBase
 
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
+        // if the collision is not a enemy,then return
         if (! LayerMaskExtensions.IsLayerInLayerMask(collision.gameObject.layer,enemyLayer)) return;
+        // find the health interface of enemy
         IHealth hp = collision.gameObject.GetComponent<IHealth>();
         ShieldCollision shieldCollision = collision.gameObject.GetComponent<ShieldCollision>();
 
+        // if health component is null then find health component in its children
         if (hp == null) 
         {
             hp = collision.gameObject.GetComponentInChildren<IHealth>();
@@ -77,7 +83,7 @@ public class GuidedMissile : BulletBase
                 Instantiate(explosionEffectPrefab, transform.position, transform.rotation);
             }
         }
-
+        // if the collision is not a enemy or a enemy shield
         if (shieldCollision != null) 
         {
             shieldCollision.TakeDamage(damage);

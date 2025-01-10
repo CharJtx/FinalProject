@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
@@ -32,8 +33,8 @@ public class EnemySpawner : MonoBehaviour
     public float speed = 15f;
 
     public int wave = 10;
-    //private List<string> gameModes = new List<string>() { "TimingMode", "AnnMode" };
-    private List<string> gameModes = new List<string>() { "AnnMode" };
+    private List<string> gameModes = new List<string>() { "TimingMode", "AnnMode" };
+    //private List<string> gameModes = new List<string>() { "AnnMode" };
     private float playerY;
     private bool isSpawning = true;
     private Transform playerTransform;
@@ -234,9 +235,17 @@ public class EnemySpawner : MonoBehaviour
 
     void ScenceOver()
     {
-        if (countdownTime == 0 || (remainingEnemy == 0 && wave == 0))
+        if (countdownTime == 0 || (remainingEnemy <= 0 && wave == 0))
         {
-            MapGenerator.Instance.ShowPanel();
+            if (SceneManager.GetActiveScene().name == "End")
+            {
+                GameManager.Instance.GameOver(true);
+            }
+            else
+            {
+                MapGenerator.Instance.ShowPanel();
+            }
+           
         }
     }
 

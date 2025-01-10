@@ -50,12 +50,13 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-        SavePlayerData();
+        //SavePlayerData();
         SceneManager.LoadScene(sceneName);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (MapGenerator.Instance != null) MapGenerator.Instance.HidePanel();
         LoadPlayerData();
     }
 
